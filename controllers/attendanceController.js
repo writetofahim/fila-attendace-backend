@@ -1,6 +1,7 @@
 const db = require("../db");
 const getAttendances = (req, res) => {
-  const q = "select * from attendance ";
+  const q =
+    "select * from attendance where EMP_name = 'Daniel miller' order by SL DESC LIMIT 10";
 
   db.query(q, [], (err, data) => {
     console.log(err);
