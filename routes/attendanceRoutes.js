@@ -5,6 +5,6 @@ const requireAuth = require("../middleware/requireAuth");
 // express router
 const router = express();
 
-router.get("/", requireAuth, getAttendances);
+router.get("/", getAttendances);
 
 module.exports = router;
