@@ -1,9 +1,9 @@
 const db = require("../db");
 const getAttendances = (req, res) => {
   const q =
-    "select * from attendance where EMP_name = 'Daniel miller' order by SL DESC LIMIT 10";
+    "select * from attendance where EMP_name = ? order by SL DESC LIMIT 10";
 
-  db.query(q, [], (err, data) => {
+  db.query(q, [req.user.user], (err, data) => {
     console.log(err);
     if (err) return res.status(500).json({ error: err.message });
     console.log(data);

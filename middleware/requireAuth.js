@@ -11,8 +11,8 @@ const requireAuth = async (req, res, next) => {
   if (authorization && authorization.startsWith("Bearer")) {
     try {
       const token = authorization.split(" ")[1];
-      const { userid } = jwt.verify(token, "filasco");
-      const query = `SELECT * FROM users WHERE userid = '${userid}' `;
+      const { user } = jwt.verify(token, "filasco");
+      const query = `SELECT * FROM users WHERE user = '${user}' `;
       db.query(query, [], function (error, results, fields) {
         if (error) {
           return res
