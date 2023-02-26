@@ -12,7 +12,6 @@ const formateDate = (date) => {
 
 const formateTime = (date) => {
   // Create a new date object
-  const date = new Date();
 
   // Get hours, minutes and seconds from the date object
   const hours = date.getHours();

@@ -6,7 +6,7 @@ const handleLogin = (req, res) => {
   const query = `SELECT * FROM users WHERE user = '${username}' AND password = '${password}'`;
   db.query(query, [], function (error, results, fields) {
     if (error) {
-      return res.status(401).json({ message: "Something went wrong!" });
+      return res.status(500).send({ error: "Something went wrong!" });
     }
     if (results.length < 1) {
       return res.status(404).send({ error: "No user found!" });
