@@ -11,11 +11,13 @@ const requireAuth = async (req, res, next) => {
   if (authorization && authorization.startsWith("Bearer")) {
     try {
       const token = authorization.split(" ")[1];
-      const { userName } = jwt.verify(token, "filasco");
-      const query = `SELECT * FROM user WHERE userName = '${userName}' `;
+      const { userid } = jwt.verify(token, "filasco");
+      const query = `SELECT * FROM users WHERE userid = '${userid}' `;
       db.query(query, [], function (error, results, fields) {
         if (error) {
-          return res.status(401).json({ message: "Something went wrong!" });
+          return res
+            .status(500)
+            .json({ error: "Something went wrong in server side!" });
         }
         if (results.length < 1) {
           return res.status(404).send({ error: "No user found!" });
@@ -24,7 +26,7 @@ const requireAuth = async (req, res, next) => {
         next();
       });
     } catch (error) {
-      res.status(401).send({ message: "Unauthorized User" });
+      res.status(401).send({ error: "Unauthorized User" });
     }
   }
 };
