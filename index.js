@@ -52,8 +52,8 @@ CREATE TABLE attendance (
 */
 
 // endpoint for punching in and out
-app.use("/api/", authRoutes);
-app.use("/api/", punchRoutes);
+app.use("/api", authRoutes);
+app.use("/api", punchRoutes);
 app.use("/api/attendance", attendanceRoutes);
 
 app.listen(port, () => {
